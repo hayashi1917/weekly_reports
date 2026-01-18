@@ -1,0 +1,87 @@
+{
+  "week_report": {
+    "id": "wr_12345678",
+    "week_id": "2026-W03",
+    "cycle_start": "2026-01-17",
+    "cycle_end": "2026-01-23",
+    "review_at": "2026-01-16T18:00:00",
+    "status": "draft",
+    "prev_week_report_id": "wr_prev0001",
+    "goals_week": ["英語長文を毎日読む"],
+    "goals_month": ["模試で偏差値5アップ"],
+    "goals_long": ["第一志望合格"],
+    "good_points": ["毎日机に向かえた"],
+    "issues": [
+      {
+        "problem": "数学が予定より遅れた",
+        "root_cause": "優先順位付けが甘かった",
+        "improvement": "前日に翌日の優先順位を整理する",
+        "tags": ["planning"]
+      }
+    ],
+    "created_at": "2026-01-16T18:05:00",
+    "updated_at": "2026-01-16T18:05:00"
+  },
+  "days": [
+    {"id": "2026-W03-2026-01-17", "week_report_id": "wr_12345678", "date": "2026-01-17"},
+    {"id": "2026-W03-2026-01-18", "week_report_id": "wr_12345678", "date": "2026-01-18"},
+    {"id": "2026-W03-2026-01-19", "week_report_id": "wr_12345678", "date": "2026-01-19"},
+    {"id": "2026-W03-2026-01-20", "week_report_id": "wr_12345678", "date": "2026-01-20"},
+    {"id": "2026-W03-2026-01-21", "week_report_id": "wr_12345678", "date": "2026-01-21"},
+    {"id": "2026-W03-2026-01-22", "week_report_id": "wr_12345678", "date": "2026-01-22"},
+    {"id": "2026-W03-2026-01-23", "week_report_id": "wr_12345678", "date": "2026-01-23"}
+  ],
+  "tasks": [
+    {
+      "id": "task_01",
+      "week_report_id": "wr_12345678",
+      "day_id": "2026-W03-2026-01-19",
+      "title": "化学 問題集",
+      "estimated_minutes": 120,
+      "priority": 2,
+      "status": "todo",
+      "reason_tags": [],
+      "note": "基礎問題を集中",
+      "created_at": "2026-01-16T18:10:00",
+      "updated_at": "2026-01-16T18:10:00"
+    },
+    {
+      "id": "task_02",
+      "week_report_id": "wr_12345678",
+      "day_id": "2026-W03-2026-01-20",
+      "title": "英語長文",
+      "estimated_minutes": 90,
+      "priority": 1,
+      "status": "todo",
+      "reason_tags": [],
+      "note": "時間を計測して解く",
+      "created_at": "2026-01-16T18:10:00",
+      "updated_at": "2026-01-16T18:10:00"
+    }
+  ],
+  "task_sessions": [
+    {
+      "id": "session_01",
+      "task_id": "task_01",
+      "start_at": "2026-01-19T09:00:00",
+      "end_at": "2026-01-19T10:00:00",
+      "note": "化学1章",
+      "is_completed": false
+    }
+  ],
+  "last_week_tasks": [
+    {
+      "id": "task_prev_01",
+      "week_report_id": "wr_prev0001",
+      "day_id": "2026-W02-2026-01-12",
+      "title": "英単語300語",
+      "estimated_minutes": 180,
+      "priority": 2,
+      "status": "done",
+      "reason_tags": [],
+      "note": "",
+      "created_at": "2026-01-09T18:10:00",
+      "updated_at": "2026-01-16T18:00:00"
+    }
+  ]
+}

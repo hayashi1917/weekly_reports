@@ -25,3 +25,6 @@ weekly-report-api = "weekly_reports.server:main"
 [build-system]
 requires = ["setuptools>=69.0"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["weekly_reports*"]

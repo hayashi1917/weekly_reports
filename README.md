@@ -27,78 +27,65 @@ Notionや個別のアプリケーションにそれぞれの機能を分けて�
 - 金曜18:00のレビュー起点で翌週（土曜開始）の週報を自動生成
 - 週報を確定すると、スナップショットJSONとPDFを出力
 
-## 使い方
-### 1. 依存関係のインストール
-```bash
-pip install -e .
-```
+## GUIでの環境構築・起動方法（推奨）
+CLIは使わずGUIで運用する前提の手順を、最初から最後までまとめています。
+本プロジェクトはPython 3.10以上とNode.js 18以上を前提としています。Pythonのバージョン管理と仮想環境作成は`uv`を使います。
 
-## 環境構築・起動方法
-本プロジェクトはPython 3.10以上を前提としています。以下の手順で環境構築と起動（コマンド実行）ができます。
-
-1. リポジトリをクローンして移動します。
+### 1. リポジトリをクローンして移動
 ```bash
 git clone <REPO_URL>
 cd weekly_reports
 ```
 
-2. 仮想環境を作成して有効化します。
+### 2. バックエンド（FastAPI）の環境構築
+1. `uv`をインストールします（未導入の場合）。
 ```bash
-python -m venv .venv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+2. Python 3.10以上の仮想環境を作成します。
+```bash
+uv venv --python 3.10 .venv
+```
+
+3. 仮想環境を有効化して依存関係をインストールします。
+```bash
 source .venv/bin/activate
+uv pip install -e .
 ```
 
-3. 依存関係をインストールします。
-```bash
-pip install -e .
-```
-
-4. CLIを起動（実行）します。
-```bash
-weekly-report --help
-```
-
-## GUI（バックエンド + フロントエンド）の起動方法
-### 1. バックエンドAPIの起動（FastAPI）
-別ターミナルで以下を実行します。
-```bash
-weekly-report-api
-```
-`http://localhost:8000/api/health` で起動確認できます。
-
-### 2. フロントエンドの起動（React + Vite）
-別ターミナルで以下を実行します。
+### 3. フロントエンド（React + Vite）の環境構築
 ```bash
 cd frontend
 npm install
+cd ..
+```
+
+### 4. GUIの起動（バックエンド + フロントエンド）
+ターミナルを2つ使います。
+
+#### ターミナルA: バックエンドAPIの起動
+```bash
+source .venv/bin/activate
+weekly-report-api
+```
+起動確認: `http://localhost:8000/api/health`
+
+#### ターミナルB: フロントエンドの起動
+```bash
+cd frontend
 npm run dev
 ```
 `http://localhost:5173` にアクセスするとGUIが表示されます。
 
-### 2. 週報の初期生成
-金曜18:00のレビュー日時を指定して、翌週の週報を初期化します。
+### 5. GUIでの基本操作
+1. 「週報の初期化」でレビュー日時を入力して初期化します。
+2. 「来週タスク」で日付行を選んでタスクを追加します。
+3. 「確定して出力」でスナップショットJSONとPDFが生成されます。
 
-```bash
-weekly-report init-week --review-at 2026-01-16T18:00:00 --output week_report.json
-```
-
-前週の週報がある場合は、`--prev` を指定すると目標（週/月/長期）が引き継がれます。
-
-```bash
-weekly-report init-week --review-at 2026-01-16T18:00:00 --prev week_report_prev.json
-```
-
-### 3. 週報の記入
-`week_report.json` にタスクやセッションを記入します。JSON構成は `example_report.json` を参照してください。
-
-### 4. 確定・出力
-```bash
-weekly-report finalize week_report.json --output-dir outputs
-```
-
-- `outputs/{week_id}_snapshot.json` にスナップショットJSONを出力
-- `outputs/{week_id}_weekly_report.pdf` にPDFを出力
-- `week_report_final.json` に確定済みの週報を保存
+### トラブルシューティング
+- フロントエンドからAPIにアクセスできない場合は、バックエンドが `http://localhost:8000` で起動しているか確認してください。
+- Vite開発サーバは `/api` を `http://localhost:8000` にプロキシします（`frontend/vite.config.ts`）。
 
 ## JSONスキーマ（概要）
 主要なトップレベルキー:
